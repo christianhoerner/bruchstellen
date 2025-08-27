@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Leaflet Satellite Map</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <div id="map" style="height: 500px;"></div>
+
+  <script>
+    // Initialize map
+    var map = L.map('map').setView([50.8278, 12.9214], 13); // Chemnitz, Germany
+
+    // Esri Satellite layer
+    L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, etc.'
+      }
+    ).addTo(map);
+
+    // Example marker
+    L.marker([50.8278, 12.9214]).addTo(map)
+      .bindPopup("Chemnitz, Germany");
+  </script>
+</body>
+</html>
