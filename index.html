@@ -5,29 +5,189 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <style>
+    /* Grid container */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* 5 columns */
+      gap: 10px; /* Space between grid items */
+      padding: 10px;
+    }
+
+    @media (max-width: 1024px) {
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for tablets */
+  }
+}
+
+@media (max-width: 768px) {
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for small tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .image-grid {
+    grid-template-columns: 1fr; /* 1 column for mobile phones */
+  }
+}
+
+    .image-grid:hover {
+      cursor: cell;
+    }
+
+    /* Grid items (images) */
+    .image-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .menu {
+      position: fixed;
+      right: 0px;
+      left: 0px;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .menu-icon {
+      width: 40px;
+      height: 40px;
+      background-color: transparent; /* Transparent background */
+      color: black;
+      border: none; /* No border */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .dropdown {
+      display: list-item; /* Display items in a row */
+      left: 20px;
+      visibility: hidden; /* Initially hidden */
+      gap: 20px; /* Space between items */
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background-color: transparent; /* Transparent background */
+      border: none; /* No border */
+    }
+
+    .dropdown li {
+      padding: 5px 10px;
+      cursor: cell;
+      background-color: transparent; /* Transparent background */
+      border: none; /* No border */
+    }
+
+    .dropdown li:hover {
+      background-color: rgba(0, 0, 0, 0.1); /* Slight hover effect */
+      border-radius: 5px;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden; /* Hidden by default */
+      opacity: 0;
+      transition: visibility 0s, opacity 0.3s ease;
+      z-index: 1000;
+    }
+
+    .modal.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* Modal content */
+    .modal-content {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    .close-btn {
+      background-color: #333;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <div id="map" style="height: 500px;"></div>
+  <div class="modal" id="popupModal">
+    <div class="modal-content">
+      <h2>Welcome to Bruchstellen Chemnitz!</h2>
+      <p>This is a popup message that appears when the page loads.</p>
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+  <div class="menu">
+    <button class="menu-icon" onclick="toggleMenu()">☰</button>
+    <ul class="dropdown" id="dropdownMenu">
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+  <div class="image-grid">
+    <a href="#" onclick="openPopup('bruchstelle1.html')">
+      <img src="https://placehold.co/400x400" alt="Placeholder 1">
+    </a>
+    <img src="https://placehold.co/400x400" alt="Placeholder 2">
+    <img src="https://placehold.co/400x400" alt="Placeholder 3">
+    <img src="https://placehold.co/400x400" alt="Placeholder 4">
+    <img src="https://placehold.co/400x400" alt="Placeholder 5">
+    <img src="https://placehold.co/400x400" alt="Placeholder 6">
+    <img src="https://placehold.co/400x400" alt="Placeholder 7">
+    <img src="https://placehold.co/400x400" alt="Placeholder 8">
+    <img src="https://placehold.co/400x400" alt="Placeholder 9">
+    <img src="https://placehold.co/400x400" alt="Placeholder 10">
+  </div>
 
-  <script>
-    // Initialize map
-    var map = L.map('map').setView([50.8278, 12.9214], 13); // Chemnitz, Germany
+<script>
+    // Toggle the dropdown menu
+    function toggleMenu() {
+      const dropdown = document.getElementById('dropdownMenu');
+      dropdown.style.visibility = dropdown.style.visibility === 'visible' ? 'hidden' : 'visible';
+    }
 
-    // Esri Satellite layer
-    L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, etc.'
-      }
-    ).addTo(map);
+    window.onload = function() {
+      const modal = document.getElementById('popupModal');
+      modal.classList.add('show');
+    };
 
-    // Example marker
-    L.marker([50.843857, 12.889468]).addTo(map)
-      .bindPopup('<a href="bruchstelle1.html" target="_blank">Bruchstelle 1</a>');
+    // Close the modal
+    function closeModal() {
+      const modal = document.getElementById('popupModal');
+      modal.classList.remove('show');
+    }
+
+    function openPopup(url) {
+    window.open(
+      url, // URL of the page to open
+      '_blank', // Target: open in a new window
+      'width=600,height=400,scrollbars=yes,resizable=yes' // Window properties
+    );
+    return false; // Prevent default link behavior
+  }
   </script>
+
 </body>
 </html>
