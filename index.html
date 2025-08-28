@@ -28,7 +28,7 @@
 
 @media (max-width: 480px) {
   .image-grid {
-    grid-template-columns: 1fr; /* 1 column for mobile phones */
+    grid-template-columns: 2fr; /* 1 column for mobile phones */
   }
 }
 
@@ -149,17 +149,17 @@
 
   /* Close button */
   .close {
-    position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      color: black;
-      border: none;
-      font-size: 24px;
-      font-weight: bold;
-      cursor: pointer;
-      z-index: 1001;
-  }
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  color: black; /* Set the color of the "X" to black */
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+}
 
   /* Full-screen iframe */
   #popupIframe {
