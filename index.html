@@ -124,7 +124,7 @@
     }
 
     .modal.show {
-      visibility: invisible;
+      visibility: visible;
       opacity: 1;
     }
 
@@ -132,18 +132,18 @@
     .modal-content {
       background-color: white;
       padding: 20px;
-      border-radius: 10px;
-      text-align: center;
+      border-radius: none;
+      text-align: block;
       width: 80%;
       max-width: 400px;
     }
 
     .close-btn {
-      background-color: #333;
-      color: white;
+      /* background-color: #333; */
+      color: black;
       border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
+      padding: none;
+      border-radius: none;
       cursor: pointer;
       margin-top: 10px;
     }
@@ -193,9 +193,10 @@
 <body>
   <div class="modal" id="popupModal">
     <div class="modal-content">
-      <h2>Welcome to Bruchstellen Chemnitz!</h2>
-      <p>This is a popup message that appears when the page loads.</p>
-      <button class="close-btn" onclick="closeModal()">Close</button>
+      <h2>School of Garage: Bruchstellen</h2>
+      <p>Wie im Steinbruch kann aus dem Aufgebrochenen Neues gewonnen werden. Brüche in Gemäuern und Brachflächen werden zu Habitaten für Wildwuchs und zu Freiräumen für informelle Nutzungen. In unserer Recherche verstehen wir Brüche als Bühnen, die Potenziale für Neuverhandlungen öffnen. Brüche sind keine Ausnahmen, sondern Normalform. Stellen, an denen Bestehendes nachgibt und Mögliches durchscheint, an denen Räume durchlässig werden, wo Ein- und Übergänge, unerwartete Begegnungen und Konflikte möglich sind.
+Brüche müssen dabei nicht die negative Konnotation tragen, die ihnen intuitiv zugeschrieben wird.</p>
+      <button class="close-btn" onclick="closeModal()">Weiter →</button>
     </div>
   </div>
   <div class="menu">
