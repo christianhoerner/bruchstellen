@@ -175,6 +175,11 @@
   z-index: 1001;
 }
 
+.menu-button {
+  color: black;
+  text-decoration: none;
+}
+
   /* Full-screen iframe */
   #popupIframe {
     width: 90%;
@@ -202,8 +207,9 @@ Brüche müssen dabei nicht die negative Konnotation tragen, die ihnen intuitiv 
   <div class="menu">
     <button class="menu-icon" onclick="toggleMenu()">menu</button>
     <ul class="dropdown" id="dropdownMenu">
-      <li>Home</li>
-      <li>About</li>
+      <a class="menu-button" href="impressum.html"><li>About</li></a>
+      <a class="menu-button" href="impressum.html"><li>About</li></a>
+      <a class="menu-button" href="impressum.html"><li>About</li></a>
       <li>Contact</li>
     </ul>
   </div>
