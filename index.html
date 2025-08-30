@@ -112,7 +112,6 @@
   <!-- Modal -->
   <div class="modal" id="popupModal">
     <div class="modal-content">
-      <img src="https://i.imgur.com/Qti7SLo.jpeg" alt="Image 3">
       <h2>School of Garage: Bruchstellen</h2>
       <p>
         Wie im Steinbruch kann aus dem Aufgebrochenen Neues gewonnen werden. Brüche in Gemäuern
@@ -149,10 +148,12 @@
   <script>
     function openModal() {
       document.getElementById('popupModal').classList.add('show');
+      document.body.style.overflow = 'hidden'; // Disable background scroll
     }
 
     function closeModal() {
       document.getElementById('popupModal').classList.remove('show');
+      document.body.style.overflow = ''; // Restore scroll
     }
 
     // Open modal automatically on page load
