@@ -105,6 +105,40 @@
       margin-top: 10px;
       align-self: flex-start;
     }
+     /* Full-screen iframe */
+  #popupIframe {
+    width: 90%;
+    height: 90%;
+    border-radius: none; /* Optional: rounded corners for the iframe */
+    background-color: white;
+  }
+
+   #popupContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it overlays other content */
+  }
+/* Close button */
+  .close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  color: black; /* Set the color of the "X" to black */
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+}
+
   </style>
 </head>
 <body>
@@ -160,6 +194,20 @@
     window.onload = function() {
       openModal();
     }
+
+    function openPopup(url) {
+      const iframe = document.getElementById('popupIframe');
+    const container = document.getElementById('popupContainer');
+    iframe.src = url;
+    container.style.display = 'flex'; // Show the container
+  }
+
+  function closePopup() {
+    const container = document.getElementById('popupContainer');
+    container.style.display = 'none'; // Hide the container
+    const iframe = document.getElementById('popupIframe');
+    iframe.src = ''; // Clear the iframe content
+  }
   </script>
 
 </body>
