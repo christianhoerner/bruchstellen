@@ -139,6 +139,64 @@
   z-index: 1001;
 }
 
+.menu-button {
+  color: black;
+  text-decoration: none;
+}
+
+    .menu {
+      position: fixed;
+      right: 0px;
+      top: 0px;
+      width: 100%;
+      z-index: 1000;
+    }
+
+    .menu-icon {
+      /* width: 40px; */
+      /* height: 40px; */
+      position: fixed;
+      top: 0px;
+      right: 0px;
+      background-color: transparent; /* Transparent background */
+      color: black;
+      border: none; /* No border */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    .dropdown {
+      display: flex; /* Display items in a row */
+      position: fixed;
+      top: 0px;
+      right: 60px;
+      visibility: hidden; /* Initially hidden */
+      gap: 20px; /* Space between items */
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      background-color: transparent; /* Transparent background */
+      border: none; /* No border */
+    }
+
+    .dropdown li {
+      padding: 5px 10px;
+      cursor: cell;
+      background-color: transparent; /* Transparent background */
+      border: none; /* No border */
+      font-size: small;
+    }
+
+    .dropdown li:hover {
+      /* background-color: rgba(0, 0, 0, 0.1); /* Slight hover effect */
+      /* border-radius: 5px; */
+      /*text-decoration: underline;*/
+      font-style: italic;
+    }
+
   </style>
 </head>
 <body>
@@ -159,7 +217,15 @@
       <button class="close-btn" onclick="closeModal()">Weiter →</button>
     </div>
   </div>
-
+<!-- Menu -->
+ <div class="menu">
+    <button class="menu-icon" onclick="toggleMenu()">menu</button>
+    <ul class="dropdown" id="dropdownMenu">
+      <a class="menu-button" href="about.html"><li>About</li></a>
+      <a class="menu-button" href="comp_Einzelseiten.pdf"><li>Compendium</li></a>
+      <a class="menu-button" href="reparatur.html"><li>Was ist Reparatur?</li></a>
+    </ul>
+  </div>
   <!-- Image Grid -->
   <div class="image-grid">
     <a href="#" onclick="openPopup('bruchstelle1.html')">
@@ -208,6 +274,10 @@
     const iframe = document.getElementById('popupIframe');
     iframe.src = ''; // Clear the iframe content
   }
+  function toggleMenu() {
+      const dropdown = document.getElementById('dropdownMenu');
+      dropdown.style.visibility = dropdown.style.visibility === 'visible' ? 'hidden' : 'visible';
+    }
   </script>
 
 </body>
