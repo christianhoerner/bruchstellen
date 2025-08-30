@@ -6,105 +6,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    
-    /* Grid container */
+    @font-face {
+      font-family: 'Karrik';
+      src: url('Web/WOFF2/Karrik-Regular.woff2') format('woff2'),
+           url('Web/WOFF/Karrik-Regular.woff') format('woff'),
+           url('Web/TFF/Karrik-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    body {
+      font-family: Karrik, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .image-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr); /* 5 columns */
-      gap: 10px; /* Space between grid items */
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
       padding: 10px;
+      max-width: 1200px;
+      margin: 0 auto;
+      justify-content: center;
+      align-items: center;
     }
 
     @media (max-width: 1024px) {
-  .image-grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 columns for tablets */
-  }
-}
-
-@media (max-width: 768px) {
-  .image-grid {
-    grid-template-columns: repeat(2, 1fr); /* 2 columns for small tablets */
-  }
-}
-
-@media (max-width: 480px) {
-  .image-grid {
-    grid-template-columns: 2fr; /* 1 column for mobile phones */
-  }
-}
-
-@font-face {
-    font-family: 'Karrik';
-    src: url('Web/WOFF2/Karrik-Regular.woff2') format('woff2'),
-         url('Web/WOFF/Karrik-Regular.woff') format('woff'),
-         url('Web/TFF/Karrik-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap; /* improves loading performance */
-}
-
-    .image-grid:hover {
-      cursor: cell;
+      .image-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
-    /* Grid items (images) */
+    @media (max-width: 768px) {
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .image-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .image-grid img {
       width: 100%;
       height: auto;
       display: block;
-    }
-
-    .menu {
-      position: fixed;
-      right: 0px;
-      top: 0px;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    .menu-icon {
-      /* width: 40px; */
-      /* height: 40px; */
-      position: fixed;
-      top: 0px;
-      right: 0px;
-      background-color: transparent; /* Transparent background */
-      color: black;
-      border: none; /* No border */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 24px;
-    }
-
-    .dropdown {
-      display: flex; /* Display items in a row */
-      position: fixed;
-      top: 0px;
-      right: 60px;
-      visibility: hidden; /* Initially hidden */
-      gap: 20px; /* Space between items */
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      background-color: transparent; /* Transparent background */
-      border: none; /* No border */
-    }
-
-    .dropdown li {
-      padding: 5px 10px;
-      cursor: cell;
-      background-color: transparent; /* Transparent background */
-      border: none; /* No border */
-      font-size: small;
-    }
-
-    .dropdown li:hover {
-      /* background-color: rgba(0, 0, 0, 0.1); /* Slight hover effect */
-      /* border-radius: 5px; */
-      /*text-decoration: underline;*/
-      font-style: italic;
     }
 
     .modal {
@@ -113,11 +66,11 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+      background-color: rgba(0,0,0,0.5);
       display: flex;
       align-items: center;
       justify-content: center;
-      visibility: hidden; /* Hidden by default */
+      visibility: hidden;
       opacity: 0;
       transition: visibility 0s, opacity 0.3s ease;
       z-index: 1000;
@@ -128,139 +81,84 @@
       opacity: 1;
     }
 
-    /* Modal content */
     .modal-content {
       background-color: white;
       padding: 20px;
-      border-radius: none;
-      text-align: block;
       width: 80%;
-      max-width: 400px;
+      max-width: 600px;
+      max-height: 80vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-content img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 1rem;
     }
 
     .close-btn {
-      /* background-color: #333; */
       color: black;
       border: none;
-      padding: none;
-      border-radius: none;
       cursor: pointer;
       margin-top: 10px;
+      align-self: flex-start;
     }
-
-    #popupContainer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
-    display: none; /* Hidden by default */
-    align-items: center;
-    justify-content: center;
-    z-index: 1000; /* Ensure it overlays other content */
-  }
-
-  /* Close button */
-  .close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: none;
-  color: black; /* Set the color of the "X" to black */
-  border: none;
-  font-size: 24px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1001;
-}
-
-.menu-button {
-  color: black;
-  text-decoration: none;
-}
-
-  /* Full-screen iframe */
-  #popupIframe {
-    width: 90%;
-    height: 90%;
-    border-radius: none; /* Optional: rounded corners for the iframe */
-    background-color: white;
-  }
-
-  body {
-  font-family: Karrik, sans-serif; /* Set the font to Verdana */
-  margin: 10px; /* Adds space between the border and the browser window */
-  padding: 10px; /* Adds space between the border and the content */
-}
   </style>
 </head>
 <body>
+
+  <!-- Modal -->
   <div class="modal" id="popupModal">
     <div class="modal-content">
+      <img src="https://i.imgur.com/Qti7SLo.jpeg" alt="Image 3">
       <h2>School of Garage: Bruchstellen</h2>
-      <p>Wie im Steinbruch kann aus dem Aufgebrochenen Neues gewonnen werden. Brüche in Gemäuern und Brachflächen werden zu Habitaten für Wildwuchs und zu Freiräumen für informelle Nutzungen. In unserer Recherche verstehen wir Brüche als Bühnen, die Potenziale für Neuverhandlungen öffnen. Brüche sind keine Ausnahmen, sondern Normalform. Stellen, an denen Bestehendes nachgibt und Mögliches durchscheint, an denen Räume durchlässig werden, wo Ein- und Übergänge, unerwartete Begegnungen und Konflikte möglich sind.
-Brüche müssen dabei nicht die negative Konnotation tragen, die ihnen intuitiv zugeschrieben wird.</p>
+      <p>
+        Wie im Steinbruch kann aus dem Aufgebrochenen Neues gewonnen werden. Brüche in Gemäuern
+        und Brachflächen werden zu Habitaten für Wildwuchs und zu Freiräumen für informelle Nutzungen.
+        In unserer Recherche verstehen wir Brüche als Bühnen, die Potenziale für Neuverhandlungen öffnen.
+        Brüche sind keine Ausnahmen, sondern Normalform. Stellen, an denen Bestehendes nachgibt und
+        Mögliches durchscheint, an denen Räume durchlässig werden, wo Ein- und Übergänge, unerwartete
+        Begegnungen und Konflikte möglich sind.  
+        Brüche müssen dabei nicht die negative Konnotation tragen, die ihnen intuitiv zugeschrieben wird.
+      </p>
       <button class="close-btn" onclick="closeModal()">Weiter →</button>
     </div>
   </div>
-  <div class="menu">
-    <button class="menu-icon" onclick="toggleMenu()">menu</button>
-    <ul class="dropdown" id="dropdownMenu">
-      <a class="menu-button" href="about.html"><li>About</li></a>
-      <a class="menu-button" href="comp_Einzelseiten.pdf"><li>Compendium</li></a>
-      <a class="menu-button" href="reparatur.html"><li>Was ist Reparatur?</li></a>
-    </ul>
-  </div>
+
+  <!-- Image Grid -->
   <div class="image-grid">
-    <a href="#" onclick="openPopup('bruchstelle1.html')">
-      <img src="https://i.imgur.com/pd3azsF.png" alt="motor"></a>
-    <a href="#" onclick="openPopup('bruchstelle_tore.html')">
-      <img src="https://i.imgur.com/hpHiiPn.jpeg" alt="tor"></a>
-    <a href="#" onclick="openPopup('bruchstelle_latex.html')">
-      <img src="https://i.imgur.com/fQM6wyQ.jpeg" alt="latex"></a>
-    <a href="#" onclick="openPopup('bruchstelle_karte.html')">
-      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTI2and0M28yMHMwczc2czRrNzJhZHIyczh3cDFxNGpjb2xjcmJrYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Qbqc2Ao48SH46JzJ9X/giphy.gif" alt="karte"></a>
-    <a href="#" onclick="openPopup('bruchstelle_sicherheit.html')">
-      <img src="https://i.imgur.com/QxN1wwC.jpeg" alt="kamera"></a>
+    <a href="#" onclick="openModal()">
+      <img src="https://i.imgur.com/pd3azsF.png" alt="motor">
+    </a>
+    <a href="#" onclick="openModal()">
+      <img src="https://i.imgur.com/hpHiiPn.jpeg" alt="tor">
+    </a>
+    <a href="#" onclick="openModal()">
+      <img src="https://i.imgur.com/sr4eklD.jpeg" alt="latex">
+    </a>
+    <a href="#" onclick="openModal()">
+      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTI2and0M28yMHMwczc2czRrNzJhZHIyczh3cDFxNGpjb2xjcmJrYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Qbqc2Ao48SH46JzJ9X/giphy.gif" alt="karte">
+    </a>
+    <a href="#" onclick="openModal()">
+      <img src="https://i.imgur.com/QxN1wwC.jpeg" alt="kamera">
+    </a>
   </div>
 
-  <div id="popupContainer" style="display: none;">
-    <span class="close" onclick="closePopup()">&times;</span>
-    <iframe id="popupIframe" style="border: none"></iframe>
-  </div>
-
-<script>
-    // Toggle the dropdown menu
-    function toggleMenu() {
-      const dropdown = document.getElementById('dropdownMenu');
-      dropdown.style.visibility = dropdown.style.visibility === 'visible' ? 'hidden' : 'visible';
+  <script>
+    function openModal() {
+      document.getElementById('popupModal').classList.add('show');
     }
 
-    window.onload = function() {
-      const modal = document.getElementById('popupModal');
-      modal.classList.add('show');
-    };
-
-    // Close the modal
     function closeModal() {
-      const modal = document.getElementById('popupModal');
-      modal.classList.remove('show');
+      document.getElementById('popupModal').classList.remove('show');
     }
 
-    function openPopup(url) {
-      const iframe = document.getElementById('popupIframe');
-    const container = document.getElementById('popupContainer');
-    iframe.src = url;
-    container.style.display = 'flex'; // Show the container
-  }
-
-  function closePopup() {
-    const container = document.getElementById('popupContainer');
-    container.style.display = 'none'; // Hide the container
-    const iframe = document.getElementById('popupIframe');
-    iframe.src = ''; // Clear the iframe content
-  }
+    // Open modal automatically on page load
+    window.onload = function() {
+      openModal();
+    }
   </script>
 
 </body>
