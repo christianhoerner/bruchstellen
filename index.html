@@ -128,21 +128,21 @@
 
   <!-- Image Grid -->
   <div class="image-grid">
-    <a href="#" onclick="openModal()">
-      <img src="https://i.imgur.com/pd3azsF.png" alt="motor">
-    </a>
-    <a href="#" onclick="openModal()">
-      <img src="https://i.imgur.com/hpHiiPn.jpeg" alt="tor">
-    </a>
-    <a href="#" onclick="openModal()">
-      <img src="https://i.imgur.com/sr4eklD.jpeg" alt="latex">
-    </a>
-    <a href="#" onclick="openModal()">
-      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTI2and0M28yMHMwczc2czRrNzJhZHIyczh3cDFxNGpjb2xjcmJrYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Qbqc2Ao48SH46JzJ9X/giphy.gif" alt="karte">
-    </a>
-    <a href="#" onclick="openModal()">
-      <img src="https://i.imgur.com/QxN1wwC.jpeg" alt="kamera">
-    </a>
+    <a href="#" onclick="openPopup('bruchstelle1.html')">
+      <img src="https://i.imgur.com/pd3azsF.png" alt="Placeholder 1"></a>
+    <a href="#" onclick="openPopup('bruchstelle_tore.html')">
+      <img src="https://i.imgur.com/hpHiiPn.jpeg" alt="Placeholder 2"></a>
+    <a href="#" onclick="openPopup('bruchstelle_latex.html')">
+      <img src="https://i.imgur.com/v6zRFg6.png" alt="Placeholder 3"></a>
+    <a href="#" onclick="openPopup('bruchstelle_karte.html')">
+      <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOTI2and0M28yMHMwczc2czRrNzJhZHIyczh3cDFxNGpjb2xjcmJrYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Qbqc2Ao48SH46JzJ9X/giphy.gif" alt="Placeholder 4"></a>
+    <a href="#" onclick="openPopup('bruchstelle_sicherheit.html')">
+      <img src="https://i.imgur.com/QxN1wwC.jpeg" alt="Placeholder 4"></a>
+  </div>
+
+  <div id="popupContainer" style="display: none;">
+    <span class="close" onclick="closePopup()">&times;</span>
+    <iframe id="popupIframe" style="border: none"></iframe>
   </div>
 
   <script>
